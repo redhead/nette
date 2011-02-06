@@ -534,7 +534,9 @@ abstract class FormControl extends Nette\Component implements IFormControl
 		$payload = array();
 		foreach ($rules as $rule) {
 			$item = array('op' => ($rule->isNegative ? '~' : ''));
-			if ($rule->operation instanceof Closure || is_array($rule->operation->getNative())) {
+			$isClosure = ($rule->operation instanceof Closure);
+			$isObjCallback = ($rule->operation instanceof \Nette\Callback && is_array($rule->operation->getNative()));
+			if ($isClosure || $isObjCallback) {
 				continue;
 			} elseif ($rule->type === Rule::VALIDATOR) {
 				$item['msg'] = $rules->formatMessage($rule, FALSE);
