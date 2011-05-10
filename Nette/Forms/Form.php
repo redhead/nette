@@ -307,6 +307,32 @@ class Form extends FormContainer
 
 
 
+	/**
+	 * Adds new listener for onSubmit event.
+	 * @param  mixed listener
+	 * @return Form
+	 */
+	public function addSubmitListener($listener)
+	{
+		$this->onSubmit[] = $listener;
+		return $this;
+	}
+
+
+
+	/**
+	 * Adds new listener for onInvalidSubmit event.
+	 * @param  mixed listener
+	 * @return Form
+	 */
+	public function addInvalidSubmitListener($listener)
+	{
+		$this->onInvalidSubmit[] = $listener;
+		return $this;
+	}
+
+
+
 	/********************* translator ****************d*g**/
 
 
