@@ -86,4 +86,14 @@ class DateTime extends \DateTime
 		return is_float($tmp = $ts * 1) ? $ts : $tmp;
 	}
 
+
+	public static function createFromFormat($format, $time, $timezone = NULL)
+	{
+		if (func_num_args() === 3 && !$timezone instanceof \DateTimeZone) {
+			throw new Nette\InvalidArgumentException('Nette\DateTime::createFromFormat() expects parameter 3 to be DateTimeZone, ' . gettype($timezone) . ' given');
+		}
+		$datetime = call_user_func_array(array('DateTime', 'createFromFormat'), func_get_args());
+		return static::from($datetime);
+	}
+
 }
